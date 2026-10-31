@@ -6,7 +6,11 @@ const eventRoutes = require("./routes/event.route");
 
 const app = express();
 
-app.use(cors());
+const allowedOrigins = (process.env.FRONTEND_URLS || "http://localhost:5500")
+    .split(",")
+    .map((origin) => origin.trim());
+
+app.use(cors({ origin: allowedOrigins }));
 app.use(express.json());
 
 app.use((req, res, next) => {
