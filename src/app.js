@@ -1,6 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 const campaignRoutes = require("./routes/campaign.route");
+const creativeRoutes = require("./routes/creative.route");
+const eventRoutes = require("./routes/event.route");
 
 const app = express();
 
@@ -13,6 +15,8 @@ app.use((req, res, next) => {
 });
 
 app.use("/campaigns", campaignRoutes);
+app.use("/creatives", creativeRoutes);
+app.use("/events", eventRoutes);
 
 app.use((req, res) => {
     res.status(404).json({ error: "Route not found" });
